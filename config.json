@@ -1,0 +1,7 @@
+{
+    "infra": {
+      "parameters": {
+        "openAiServiceLocation": "eastus2"
+      }
+    }
+  }
