@@ -21,7 +21,7 @@ function Test-Command($cmdname) {
 }
 
 # Check for required tools
-Write-ColorOutput $Colors.Cyan "🔍 Checking required tools..."
+Write-ColorOutput $Colors.Cyan " Checking required tools..."
 
 if (-not (Test-Command "pnpm")) {
     Write-ColorOutput $Colors.Yellow "Installing pnpm globally..."
@@ -29,13 +29,13 @@ if (-not (Test-Command "pnpm")) {
 }
 
 if (-not (Test-Command "python")) {
-    Write-ColorOutput $Colors.Red "❌ Python is required but not found. Please install Python 3.12 or later."
+    Write-ColorOutput $Colors.Red "X Python is required but not found. Please install Python 3.12 or later."
     exit 1
 }
 
 # Function to start the frontend
 function Start-Frontend {
-    Write-ColorOutput $Colors.Cyan "🚀 Starting frontend development server..."
+    Write-ColorOutput $Colors.Cyan " Starting frontend development server..."
     Push-Location app/frontend
     try {
         # Install dependencies if needed
@@ -51,7 +51,7 @@ function Start-Frontend {
 
 # Function to start the backend
 function Start-Backend {
-    Write-ColorOutput $Colors.Cyan "🚀 Starting backend server..."
+    Write-ColorOutput $Colors.Cyan " Starting backend server..."
     Push-Location app/backend
     try {
         # Create and activate virtual environment if it doesn't exist
@@ -86,6 +86,6 @@ try {
     # Start backend in foreground
     Start-Backend
 } catch {
-    Write-ColorOutput $Colors.Red "❌ Error: $_"
+    Write-ColorOutput $Colors.Red "X Error: $_"
     exit 1
 }

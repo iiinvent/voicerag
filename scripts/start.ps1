@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 # Source the Python environment setup
 . ./scripts/load_python_env.ps1
 
-Write-Host "📦 Setting up frontend..." -ForegroundColor Cyan
+Write-Host "Setting up frontend..." -ForegroundColor Cyan
 Push-Location app/frontend
 
 # Check if pnpm is installed
@@ -28,7 +28,7 @@ try {
         throw "Failed to build frontend"
     }
 
-    Write-Host "🚀 Starting development servers..." -ForegroundColor Cyan
+    Write-Host "Starting development servers..." -ForegroundColor Cyan
 
     # Start frontend dev server in background
     Write-Host "Starting frontend development server..." -ForegroundColor Yellow

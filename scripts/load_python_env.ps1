@@ -9,7 +9,7 @@ if (-not $pythonCmd) {
     # fallback to python3 if python not found
     $pythonCmd = Get-Command python3 -ErrorAction SilentlyContinue
     if (-not $pythonCmd) {
-        Write-Host "❌ Python is required but not found. Please install Python 3.12 or later." -ForegroundColor Red
+        Write-Host "X Python is required but not found. Please install Python 3.12 or later." -ForegroundColor Red
         exit 1
     }
 }
@@ -48,4 +48,4 @@ Write-Host 'Installing dependencies from "requirements.txt"...' -ForegroundColor
 Write-Host "Installing development dependencies..." -ForegroundColor Yellow
 & $venvPythonPath -m pip install gunicorn aiohttp-devtools pytest pytest-asyncio pytest-cov black flake8 mypy
 
-Write-Host "✅ Python environment setup completed!" -ForegroundColor Green
+Write-Host "Python environment setup completed!" -ForegroundColor Green

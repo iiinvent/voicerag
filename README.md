@@ -65,6 +65,23 @@ You can run the project in your local VS Code Dev Container using the [Dev Conta
 2. Clone the repo (`git clone https://github.com/Azure-Samples/aisearch-openai-rag-audio`)
 3. Proceed to the next section to [deploy the app](#deploying-the-app).
 
+## Recent Updates
+
+### Script and Build Improvements
+- Switched from npm to pnpm for better package management and faster installations
+- Fixed frontend build issues that were causing compilation errors
+- Enhanced development scripts for better local development experience
+
+### Docker Changes
+- Updated Docker configuration for improved build process
+- Added multi-stage builds to reduce final image size
+- Optimized container caching for faster builds
+
+### Build Process Notes
+- Frontend build issues have been resolved by updating dependencies and build configuration
+- Switched to pnpm for better dependency management and faster installations
+- If you encounter any build issues, make sure to clear your cache and run `pnpm install`
+
 ## Deploying the app
 
 The steps below will provision Azure resources and deploy the application code to Azure Container Apps.
@@ -123,7 +140,21 @@ You can run this app locally using either the Azure services you provisioned by 
 
    To use Entra ID (your user when running locally, managed identity when deployed) simply don't set the keys.
 
-3. Run this command to start the app:
+3. Install dependencies:
+   ```bash
+   # Install pnpm if you haven't already
+   npm install -g pnpm
+
+   # Install frontend dependencies
+   cd app/frontend
+   pnpm install
+
+   # Install backend dependencies
+   cd ../backend
+   pip install -r requirements.txt
+   ```
+
+4. Run this command to start the app:
 
    Windows:
 
@@ -137,7 +168,7 @@ You can run this app locally using either the Azure services you provisioned by 
    ./scripts/start.sh
    ```
 
-4. The app is available on [http://localhost:8765](http://localhost:8765).
+The app is available on [http://localhost:8765](http://localhost:8765).
 
    Once the app is running, when you navigate to the URL above you should see the start screen of the app:
    ![app screenshot](docs/talktoyourdataapp.png)
@@ -145,6 +176,38 @@ You can run this app locally using either the Azure services you provisioned by 
    To try out the app, click the "Start conversation button", say "Hello", and then ask a question about your data like "What is the whistleblower policy for Contoso electronics?"
 
 ## Guidance
+
+### Running PowerShell Scripts
+
+If you encounter issues running PowerShell scripts, you might need to adjust your execution policy. Here are the steps:
+
+1. Open PowerShell as Administrator
+2. Check your current execution policy:
+   ```powershell
+   Get-ExecutionPolicy
+   ```
+
+3. If needed, set the execution policy to allow local scripts:
+   ```powershell
+   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
+
+4. Now you can run PowerShell scripts using one of these methods:
+   ```powershell
+   # Method 1: Using full path
+   .\script.ps1
+
+   # Method 2: Using PowerShell command
+   pwsh .\script.ps1
+
+   # Method 3: Using relative path from current directory
+   ./script.ps1
+   ```
+
+If you still get permission errors, try running the script with the bypass parameter:
+```powershell
+PowerShell -ExecutionPolicy Bypass -File .\script.ps1
+```
 
 ### Costs
 

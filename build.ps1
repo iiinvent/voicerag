@@ -3,7 +3,7 @@
 # Stop on any error
 $ErrorActionPreference = "Stop"
 
-Write-Host "🚀 Starting build process..." -ForegroundColor Cyan
+Write-Host "Starting build process..." -ForegroundColor Cyan
 
 # Function to check if a command exists
 function Test-Command($cmdname) {
@@ -17,12 +17,12 @@ if (-not (Test-Command "pnpm")) {
 }
 
 if (-not (Test-Command "python")) {
-    Write-Host "❌ Python is required but not found. Please install Python 3.12 or later." -ForegroundColor Red
+    Write-Host "X Python is required but not found. Please install Python 3.12 or later." -ForegroundColor Red
     exit 1
 }
 
 # Build frontend
-Write-Host "📦 Building frontend..." -ForegroundColor Cyan
+Write-Host "Building frontend..." -ForegroundColor Cyan
 Push-Location app/frontend
 try {
     Write-Host "Installing frontend dependencies..." -ForegroundColor Yellow
@@ -39,7 +39,7 @@ try {
 }
 
 # Setup backend
-Write-Host "🔧 Setting up backend..." -ForegroundColor Cyan
+Write-Host "Setting up backend..." -ForegroundColor Cyan
 Push-Location app/backend
 try {
     # Remove existing virtual environment if it exists
@@ -72,7 +72,7 @@ try {
     Pop-Location
 }
 
-Write-Host "✅ Build completed successfully!" -ForegroundColor Green
+Write-Host "Build completed successfully!" -ForegroundColor Green
 Write-Host @"
 
 To run the application:
